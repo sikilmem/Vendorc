@@ -143,7 +143,7 @@ export default class TokenParser {
       this.value &&
       this.stack.every((item) => !item.emit)
     ) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+       
       delete (this.value as JsonStruct as any)[this.key as string | number];
     }
 
@@ -382,7 +382,7 @@ export default class TokenParser {
     }
   }
 
-  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+   
   public onValue(parsedElementInfo: ParsedElementInfo): void {
     // Override me
     throw new TokenParserError(

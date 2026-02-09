@@ -170,7 +170,6 @@ export default class Tokenizer {
       for (let i = 0; i < buffer.length; i += 1) {
         const n = buffer[i]; // get current byte from buffer
         switch (this.state) {
-          // @ts-expect-error fall through case
           case TokenizerStates.BOM_OR_START:
             if (input instanceof Uint8Array && n === 0xef) {
               this.bom = [0xef, 0xbb, 0xbf];
@@ -208,7 +207,7 @@ export default class Tokenizer {
                 continue;
               }
             }
-          // eslint-disable-next-line no-fallthrough
+           
           case TokenizerStates.START:
             this.offset += 1;
 
@@ -401,7 +400,7 @@ export default class Tokenizer {
             this.state = TokenizerStates.STRING_DEFAULT;
             continue;
           case TokenizerStates.STRING_AFTER_BACKSLASH:
-            // eslint-disable-next-line no-case-declarations
+             
             const controlChar = escapedSequences[n];
             if (controlChar) {
               this.bufferedString.appendChar(controlChar);
@@ -561,14 +560,13 @@ export default class Tokenizer {
             this.state = TokenizerStates.START;
             this.emitNumber();
             continue;
-          // @ts-expect-error fall through case
           case TokenizerStates.NUMBER_AFTER_E:
             if (n === charset.PLUS_SIGN || n === charset.HYPHEN_MINUS) {
               this.bufferedNumber.appendChar(n);
               this.state = TokenizerStates.NUMBER_AFTER_E_AND_SIGN;
               continue;
             }
-          // eslint-disable-next-line no-fallthrough
+           
           case TokenizerStates.NUMBER_AFTER_E_AND_SIGN:
             if (n >= charset.DIGIT_ZERO && n <= charset.DIGIT_NINE) {
               this.bufferedNumber.appendChar(n);
@@ -833,7 +831,7 @@ export default class Tokenizer {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+   
   public onToken(parsedToken: ParsedTokenInfo): void {
     // Override me
     throw new TokenizerError(

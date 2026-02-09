@@ -24,7 +24,7 @@ import {
     set,
 } from "@api/DataStore";
 import { sleep } from "@utils/misc";
-import { LoggedAttachment } from "userplugins/vc-message-logger-enhanced/types";
+import { LoggedAttachment } from "userplugins/vc-messageLoggerEnhanced/types";
 
 import { Flogger, Native } from "../..";
 import { DEFAULT_IMAGE_CACHE_DIR } from "../constants";
